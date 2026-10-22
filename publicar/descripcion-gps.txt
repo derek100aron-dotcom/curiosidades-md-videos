@@ -1,9 +1,5 @@
-Tu celular sabe dónde estás… sin mandarle nada a nadie.
+Cómo sabe tu GPS dónde estás (sin mandar nada) 🛰️ y por qué necesita a Einstein.
 
-El GPS solo escucha: más de 30 satélites con relojes atómicos repiten su hora, y tu celular calcula la distancia a cada uno por lo que tarda la señal. Con al menos 4 sabe exactamente dónde estás.
+Envíaselo a ese amigo que siempre se pierde 👇
 
-Y usa a Einstein: por la relatividad, los relojes de los satélites se adelantan unos 38 microsegundos al día. En ese tiempo la luz recorre más de 11 km, así que sin corregirlo el GPS se equivocaría kilómetros cada día. Por eso se ajustan antes del lanzamiento.
-
-Envíaselo a ese amigo que siempre se pierde, aunque tenga GPS 👇
-
-#curiosidades #sabiasque #ciencia #tecnologia #einstein #datoscuriosos
+#gps #ciencia #curiosidades #sabiasque
