@@ -1,0 +1,270 @@
+{% comment %}
+  Página de venta · Método Reels con IA (@Curiosidades_MD)
+  ─────────────────────────────────────────────────────────
+  INSTALACIÓN (5 minutos):
+  1) Contenido → Archivos → Subir archivos: sube TODO lo de la carpeta "subir-a-shopify" (mdv-demo.mp4 y las imágenes mdv-*.jpg).
+  2) Crea el producto con el identificador (handle) metodo-reels-ia  (Productos → tu producto → "Editar el SEO del sitio web" → URL).
+     Si usas otro handle, cámbialo SOLO en la línea de abajo: assign mdv_handle = '...'
+  3) Tienda online → Temas → Personalizar → en la página que quieras: Agregar sección → "Liquid personalizado" → pega TODO este archivo.
+     En la configuración de la sección pon el relleno (padding) superior e inferior en 0.
+  El botón lleva directo al pago y el precio se toma solo del producto.
+{% endcomment %}
+{%- assign mdv_handle = 'metodo-reels-ia' -%}
+{%- assign mdv_p = all_products[mdv_handle] -%}
+{%- if mdv_p and mdv_p.id -%}
+  {%- capture mdv_link -%}/cart/{{ mdv_p.selected_or_first_available_variant.id }}:1{%- endcapture -%}
+  {%- capture mdv_precio -%}{{ mdv_p.price | money_without_trailing_zeros }}{%- endcapture -%}
+  {%- if mdv_p.compare_at_price > mdv_p.price -%}{%- capture mdv_antes -%}{{ mdv_p.compare_at_price | money_without_trailing_zeros }}{%- endcapture -%}{%- endif -%}
+{%- else -%}
+  {%- capture mdv_link -%}/products/{{ mdv_handle }}{%- endcapture -%}
+  {%- assign mdv_precio = '$29 USD' -%}
+{%- endif -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+
+<style>
+  body{overflow-x:clip}
+  .mdv{--bg:#07090D;--card:#10141C;--line:#232A36;--txt:#F2F4F8;--sub:#9AA3B5;--oro:#F0A030;--azul:#3D8BFF;--verde:#3BE07A;--rojo:#E8323C;
+    width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);background:var(--bg);color:var(--txt);
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.55;overflow:hidden;-webkit-font-smoothing:antialiased;text-align:left}
+  .mdv *{box-sizing:border-box}
+  .mdv h1,.mdv h2,.mdv h3,.mdv p,.mdv ul,.mdv li{font-family:inherit;color:inherit;margin:0;padding:0;text-transform:none;letter-spacing:normal}
+  .mdv a{color:inherit;text-decoration:none}
+  .mdv img,.mdv video{display:block;max-width:100%}
+  .mdv .w{max-width:1100px;margin:0 auto;padding:0 20px}
+  .mdv .mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+  .mdv .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1.5px solid var(--azul);border-radius:999px;font:800 12px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase}
+  .mdv h1{font-size:clamp(36px,6.4vw,68px);line-height:1.02;letter-spacing:-.035em;margin:22px 0 18px;font-weight:900}
+  .mdv h2{font-size:clamp(28px,4.4vw,46px);line-height:1.08;letter-spacing:-.025em;margin:18px 0 12px;font-weight:900}
+  .mdv h3{font-size:19px;font-weight:800;margin:0 0 6px;letter-spacing:-.01em}
+  .mdv .sub{color:var(--sub);font-size:clamp(16px,2.1vw,19px)}
+  .mdv .oro{color:var(--oro)}
+  .mdv .sel{position:relative;padding:0 6px;background:rgba(61,139,255,.18);border:2px solid var(--azul);white-space:nowrap}
+  .mdv .sel:before,.mdv .sel:after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--azul)}
+  .mdv .sel:before{left:-7px;top:-7px}.mdv .sel:after{right:-7px;bottom:-7px}
+  .mdv .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 30px;border-radius:14px;background:var(--oro);color:#111 !important;font-weight:900;font-size:18px;box-shadow:0 0 40px rgba(240,160,48,.35);transition:transform .15s,box-shadow .15s;border:0;cursor:pointer}
+  .mdv .btn:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(240,160,48,.55)}
+  .mdv .nota{font:600 12.5px/1.45 "JetBrains Mono",ui-monospace,monospace;color:var(--sub);letter-spacing:.04em}
+  .mdv section{padding:76px 0;border-top:1px solid var(--line)}
+  /* Hero */
+  .mdv .hero{padding:64px 0 70px;background:radial-gradient(ellipse at 75% 35%,rgba(240,160,48,.14),transparent 60%)}
+  .mdv .hero .g{display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center}
+  .mdv .tels{position:relative;height:540px}
+  .mdv .tel{position:absolute;width:240px;aspect-ratio:9/16;border-radius:32px;border:7px solid #1E232D;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.75);background:#000}
+  .mdv .tel img,.mdv .tel video{width:100%;height:100%;object-fit:cover}
+  .mdv .tel.a{left:0;top:56px;transform:rotate(-8deg);opacity:.9}
+  .mdv .tel.b{left:150px;top:0;z-index:2;transform:rotate(4deg)}
+  .mdv .ctas{margin-top:28px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .mdv .precio-tachado{color:var(--sub);text-decoration:line-through;margin-right:6px}
+  .mdv .confianza{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px}
+  .mdv .confianza span{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--sub)}
+  .mdv .confianza b{color:var(--verde)}
+  /* Tarjetas */
+  .mdv .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:30px}
+  .mdv .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
+  .mdv .card .n{font:800 12px/1 "JetBrains Mono",ui-monospace,monospace;color:var(--oro);letter-spacing:.16em;margin-bottom:14px}
+  .mdv .card p{color:var(--sub)}
+  /* Árbol de carpeta */
+  .mdv .arbol{background:#0B0E14;border:1px solid var(--line);border-radius:20px;padding:24px 26px;font:600 14px/1.9 "JetBrains Mono",ui-monospace,monospace;color:#C9CED9;overflow-x:auto;white-space:pre;margin-top:22px}
+  .mdv .arbol i{font-style:normal;color:var(--oro)}
+  .mdv .arbol em{font-style:normal;color:#6A7286}
+  /* Pasos */
+  .mdv .pasos{counter-reset:p;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+  .mdv .paso{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+  .mdv .paso:before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--azul);font-weight:900;margin-bottom:14px;color:#fff}
+  .mdv .paso p{color:var(--sub);font-size:15px}
+  /* Galería */
+  .mdv .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+  .mdv .gal img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:16px;border:1px solid var(--line)}
+  /* Para quién */
+  .mdv .quien{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+  .mdv .quien ul{list-style:none;margin-top:12px}
+  .mdv .quien li{padding:9px 0 9px 30px;position:relative;color:var(--sub);border-bottom:1px solid var(--line)}
+  .mdv .quien .si li:before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:900}
+  .mdv .quien .no li:before{content:"✕";position:absolute;left:0;color:var(--rojo);font-weight:900}
+  /* Precio */
+  .mdv .precio{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+  .mdv .caja{background:linear-gradient(180deg,#141A24,#0D1117);border:2px solid var(--oro);border-radius:26px;padding:34px;box-shadow:0 0 70px rgba(240,160,48,.15)}
+  .mdv .cifra{font-size:66px;font-weight:900;letter-spacing:-.035em;line-height:1}
+  .mdv .lista{list-style:none;margin:22px 0 26px}
+  .mdv .lista li{padding:10px 0 10px 32px;position:relative;border-bottom:1px solid var(--line)}
+  .mdv .lista li:before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:900}
+  /* FAQ */
+  .mdv details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-top:12px}
+  .mdv summary{cursor:pointer;font-weight:800;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  .mdv summary::-webkit-details-marker{display:none}
+  .mdv summary:after{content:"+";color:var(--oro);font-weight:900}
+  .mdv details[open] summary:after{content:"–"}
+  .mdv details p{color:var(--sub);margin-top:10px}
+  .mdv .final{text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(61,139,255,.16),transparent 60%)}
+  /* Barra fija en móvil */
+  .mdv-barra{position:fixed;left:0;right:0;bottom:0;z-index:999;display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(7,9,13,.96);border-top:1px solid #232A36;backdrop-filter:blur(10px);font-family:Inter,system-ui,sans-serif;transform:translateY(110%);transition:transform .25s}
+  .mdv-barra.ver{transform:none}
+  .mdv-barra b{color:#F2F4F8;font-size:18px;font-weight:900}
+  .mdv-barra span{display:block;color:#9AA3B5;font-size:12px}
+  .mdv-barra a{background:#F0A030;color:#111 !important;font-weight:900;padding:13px 20px;border-radius:12px;text-decoration:none;white-space:nowrap}
+  @media (max-width:860px){
+    .mdv .hero{padding:40px 0 50px}
+    .mdv .hero .g,.mdv .precio,.mdv .quien{grid-template-columns:1fr}
+    .mdv .tels{height:380px;width:310px;margin:6px auto 0}
+    .mdv .tel{width:170px;border-width:5px;border-radius:24px}.mdv .tel.b{left:130px}.mdv .tel.a{top:40px}
+    .mdv .grid{grid-template-columns:1fr}
+    .mdv .pasos{grid-template-columns:1fr 1fr}
+    .mdv .gal{grid-template-columns:repeat(2,1fr)}
+    .mdv section{padding:56px 0}
+    .mdv .btn{width:100%}
+    .mdv-barra{display:flex}
+  }
+</style>
+
+<div class="mdv">
+  <!-- HERO -->
+  <div class="hero"><div class="w g">
+    <div>
+      <span class="pill">✦ Método Reels con IA</span>
+      <h1>Crea Reels de curiosidades <span class="sel">virales</span> con IA… <span class="oro">sin saber editar</span></h1>
+      <p class="sub">La carpeta exacta de reglas, plantillas y automatización con la que hago los videos de @Curiosidades_MD: guion verificado, voz natural, animación, render y publicación automática en Instagram.</p>
+      <div class="ctas">
+        <a class="btn" href="{{ mdv_link }}" id="mdv-cta">Quiero el método · {% if mdv_antes %}<span class="precio-tachado">{{ mdv_antes }}</span>{% endif %}{{ mdv_precio }}</a>
+        <span class="nota">Pago único · Descarga inmediata</span>
+      </div>
+      <div class="confianza">
+        <span><b>✓</b> Pago seguro</span>
+        <span><b>✓</b> Acceso al instante</span>
+        <span><b>✓</b> Todo en español</span>
+      </div>
+    </div>
+    <div class="tels" aria-hidden="true">
+      <div class="tel a"><img src="{{ 'mdv-watch-escena.jpg' | file_url }}" alt="" loading="lazy"></div>
+      <div class="tel b"><video src="{{ 'mdv-demo.mp4' | file_url }}" poster="{{ 'mdv-faceid.jpg' | file_url }}" autoplay muted loop playsinline preload="metadata"></video></div>
+    </div>
+  </div></div>
+
+  <!-- QUÉ INCLUYE -->
+  <section><div class="w">
+    <span class="pill">Qué incluye</span>
+    <h2>Todo lo que uso, listo para copiar</h2>
+    <div class="grid">
+      <div class="card"><div class="n">01 · CARPETA DE REGLAS</div><h3>El "cerebro" de los videos</h3><p>Las reglas que sigue la IA: fórmula del gancho, estructura del guion, ritmo de escenas, subtítulos, sonido, finales en bucle y dos estilos visuales probados.</p></div>
+      <div class="card"><div class="n">02 · PLANTILLA DEL PROYECTO</div><h3>4 videos de ejemplo + componentes</h3><p>Proyecto de animación listo: subtítulos palabra por palabra, cámara continua, etiquetas, cifras, cierres, escenas 3D, música y efectos de sonido originales.</p></div>
+      <div class="card"><div class="n">03 · GUÍA DE AUTOMATIZACIÓN</div><h3>De la idea a Instagram solo</h3><p>Paso a paso: voz con IA, render en máxima calidad, portada automática, publicación por la API oficial de Instagram y programación diaria.</p></div>
+      <div class="card"><div class="n">04 · IDEAS DE GUIONES</div><h3>37 temas con gancho</h3><p>Temas de tecnología e historia con su frase gancho, la idea a explicar y fuentes de los ejemplos.</p></div>
+    </div>
+    <div class="arbol"><i>Metodo-Reels-IA/</i>
+├── 00-EMPIEZA-AQUI.md            <em># arranque en 15 minutos</em>
+├── Manual-Metodo-Reels-IA.pdf    <em># manual completo de 19 páginas</em>
+├── 01-REGLAS/CLAUDE.md           <em># las reglas de la IA</em>
+├── 02-PLANTILLA/                 <em># proyecto + 4 ejemplos + herramientas</em>
+├── 03-GUIA/                      <em># automatización paso a paso</em>
+├── 04-IDEAS/                     <em># 37 temas con gancho</em>
+└── LICENCIA.md</div>
+  </div></section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section><div class="w">
+    <span class="pill">Cómo funciona</span>
+    <h2>De una idea a un Reel publicado</h2>
+    <div class="pasos">
+      <div class="paso"><h3>Eliges el tema</h3><p>Uno de la lista o uno nuevo que pase la prueba de la "frase imposible".</p></div>
+      <div class="paso"><h3>La IA escribe y narra</h3><p>Guion con datos verificados y voz natural sincronizada palabra por palabra.</p></div>
+      <div class="paso"><h3>Se anima y renderiza</h3><p>Escenas, subtítulos, música y efectos en vertical 1080×1920, máxima calidad.</p></div>
+      <div class="paso"><h3>Se publica solo</h3><p>Con portada, descripción y primer comentario, a la hora que programes.</p></div>
+    </div>
+  </div></section>
+
+  <!-- GALERÍA -->
+  <section><div class="w">
+    <span class="pill">Hecho con el método</span>
+    <h2>Videos reales de la cuenta</h2>
+    <div class="gal">
+      <img src="{{ 'mdv-tarjeta.jpg' | file_url }}" alt="Reel: tu tarjeta paga sin pila" loading="lazy">
+      <img src="{{ 'mdv-onoda.jpg' | file_url }}" alt="Reel: el soldado que siguió en guerra hasta 1974" loading="lazy">
+      <img src="{{ 'mdv-gps.jpg' | file_url }}" alt="Reel: cómo funciona el GPS" loading="lazy">
+      <img src="{{ 'mdv-qr.jpg' | file_url }}" alt="Reel: rompe un QR y sigue funcionando" loading="lazy">
+    </div>
+    <p class="nota" style="margin-top:14px">Ejemplos reales publicados por @Curiosidades_MD. Los resultados de cada cuenta dependen del tema, la constancia y el público.</p>
+  </div></section>
+
+  <!-- PARA QUIÉN -->
+  <section><div class="w">
+    <span class="pill">¿Es para ti?</span>
+    <h2>Hecho para creadores que quieren constancia</h2>
+    <div class="quien">
+      <div class="card si"><h3>Es para ti si…</h3><ul>
+        <li>Quieres publicar un Reel diario sin pasar horas editando.</li>
+        <li>Te gustan la ciencia, la tecnología o la historia.</li>
+        <li>Quieres un sistema que puedas repetir y mejorar.</li>
+        <li>Quieres automatizar la publicación en Instagram.</li>
+      </ul></div>
+      <div class="card no"><h3>No es para ti si…</h3><ul>
+        <li>Buscas seguidores garantizados de la noche a la mañana.</li>
+        <li>No quieres usar herramientas de IA ni crear cuentas.</li>
+        <li>Quieres videos de baile, retos o con tu cara.</li>
+      </ul></div>
+    </div>
+  </div></section>
+
+  <!-- PRECIO -->
+  <section id="mdv-precio"><div class="w precio">
+    <div>
+      <span class="pill">Acceso completo</span>
+      <h2>Empieza hoy tu canal de curiosidades</h2>
+      <p class="sub">Un solo pago. Descargas la carpeta y la usas para todos los videos que quieras.</p>
+    </div>
+    <div class="caja">
+      <div class="nota">MÉTODO REELS CON IA</div>
+      <div style="display:flex;align-items:baseline;gap:12px;margin-top:12px;flex-wrap:wrap">
+        {% if mdv_antes %}<span class="precio-tachado" style="font-size:24px">{{ mdv_antes }}</span>{% endif %}
+        <span class="cifra">{{ mdv_precio }}</span><span class="sub">pago único</span>
+      </div>
+      <ul class="lista">
+        <li>Carpeta de reglas completa</li>
+        <li>Plantilla del proyecto con 4 ejemplos</li>
+        <li>Música y efectos de sonido originales</li>
+        <li>Guía de automatización y publicación</li>
+        <li>Manual en PDF + 37 ideas de guiones</li>
+        <li>Actualizaciones del método</li>
+      </ul>
+      <a class="btn" style="width:100%" href="{{ mdv_link }}">Comprar ahora</a>
+      <p class="nota" style="margin-top:12px;text-align:center">Pago seguro · Recibes la descarga en tu correo</p>
+    </div>
+  </div></section>
+
+  <!-- PREGUNTAS -->
+  <section><div class="w">
+    <span class="pill">Preguntas frecuentes</span>
+    <h2>Antes de comprar</h2>
+    <details><summary>¿Necesito saber programar o editar?</summary><p>No. La guía explica cada paso y la IA hace el trabajo pesado: tú eliges el tema, revisas y publicas.</p></details>
+    <details><summary>¿Qué necesito para usarlo?</summary><p>Una computadora (o un entorno en la nube), Claude Code, una cuenta de ElevenLabs para la voz y una cuenta profesional de Instagram para publicar automáticamente. Algunas de estas herramientas tienen costo propio.</p></details>
+    <details><summary>¿Cómo recibo la carpeta?</summary><p>Justo después del pago te llega el enlace de descarga a tu correo. Es un archivo ZIP con todo.</p></details>
+    <details><summary>¿Puedo usarlo para clientes o monetizar mis videos?</summary><p>Sí: puedes crear y vender videos hechos con el método. Lo que no puedes es revender o compartir la carpeta.</p></details>
+    <details><summary>¿Está en español?</summary><p>Sí, todo: reglas, guía, manual, ideas y ejemplos.</p></details>
+    <details><summary>¿Me garantiza que mis videos se hagan virales?</summary><p>Nadie puede garantizar eso. El método te da la fórmula y las herramientas que usamos; el alcance depende de tus temas, tu constancia y tu público.</p></details>
+  </div></section>
+
+  <!-- FINAL -->
+  <section class="final"><div class="w">
+    <h2>Tu próximo Reel puede estar listo <span class="oro">en una hora</span></h2>
+    <p class="sub" style="margin:10px auto 28px;max-width:620px">Llévate la carpeta exacta que uso para crear y publicar mis videos con IA.</p>
+    <a class="btn" href="{{ mdv_link }}">Quiero el método · {{ mdv_precio }}</a>
+    <p class="nota" style="margin-top:16px">@Curiosidades_MD</p>
+  </div></section>
+</div>
+
+<!-- Barra de compra fija en el celular (aparece al pasar la portada) -->
+<div class="mdv-barra" id="mdv-barra">
+  <div><b>{{ mdv_precio }}</b><span>Método Reels con IA</span></div>
+  <a href="{{ mdv_link }}">Comprar ahora</a>
+</div>
+<script>
+  (function () {
+    var cta = document.getElementById("mdv-cta"), precio = document.getElementById("mdv-precio"), barra = document.getElementById("mdv-barra");
+    if (!cta || !barra || !("IntersectionObserver" in window)) return;
+    var arriba = true, enPrecio = false;
+    var pinta = function () { barra.classList.toggle("ver", !arriba && !enPrecio); };
+    new IntersectionObserver(function (e) { arriba = e[0].isIntersecting; pinta(); }).observe(cta);
+    if (precio) new IntersectionObserver(function (e) { enPrecio = e[0].isIntersecting; pinta(); }).observe(precio);
+  })();
+</script>
