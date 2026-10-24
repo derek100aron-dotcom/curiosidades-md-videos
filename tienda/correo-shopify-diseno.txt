@@ -1,0 +1,74 @@
+<div style="margin:0;padding:0;background:#EEF1F6">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EEF1F6;padding:28px 12px">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#FFFFFF;border-radius:18px;overflow:hidden;font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1A1F2B">
+
+        <!-- Cabecera -->
+        <tr><td style="background:#07090D;padding:34px 34px 30px">
+          <div style="display:inline-block;border:1.5px solid #3D8BFF;border-radius:99px;padding:6px 14px;font:700 11px Menlo,Consolas,monospace;letter-spacing:2px;color:#FFFFFF">✦ PEDIDO CONFIRMADO</div>
+          <div style="font-size:30px;line-height:1.1;font-weight:900;color:#FFFFFF;margin-top:18px;letter-spacing:-0.5px">Tu <span style="color:#F0A030">Método Reels con IA</span><br>está listo</div>
+          <div style="font-size:15px;color:#9AA3B5;margin-top:12px">Gracias por tu compra, {{customer.first_name}}. Aquí tienes todo para empezar hoy mismo.</div>
+        </td></tr>
+
+        <!-- Descarga -->
+        <tr><td style="padding:30px 34px 6px">
+          <div style="font-size:18px;font-weight:800">1 · Descarga tu carpeta</div>
+          <div style="font-size:14px;color:#5A606E;margin-top:6px">Es un archivo ZIP (Metodo-Reels-IA.zip). Descárgalo desde una computadora y descomprímelo.</div>
+        </td></tr>
+        <tr><td style="padding:14px 34px 10px">
+          {% for attachment in attachments %}
+          <div style="font-size:13px;color:#5A606E;margin-bottom:8px">{{ attachment.product_name }}</div>
+          {% if attachment.name %}<a href="{{ attachment.shop_url }}" style="display:block;background:#F0A030;color:#111111;text-decoration:none;font-weight:900;font-size:16px;text-align:center;padding:16px;border-radius:12px;margin-bottom:12px">⬇ Descargar {{ attachment.name }}</a>{% endif %}
+          {% if attachment.link %}{% if attachment.instructions %}<div style="font-size:13px;color:#5A606E;margin-bottom:8px">{{ attachment.instructions }}</div>{% endif %}<a href="{{ attachment.url }}" style="display:block;background:#3D8BFF;color:#FFFFFF;text-decoration:none;font-weight:900;font-size:16px;text-align:center;padding:16px;border-radius:12px;margin-bottom:12px">{% if attachment.cta_text %}{{ attachment.cta_text }}{% else %}Acceder{% endif %}</a>{% endif %}
+          {% endfor %}
+        </td></tr>
+
+        <!-- Primeros pasos -->
+        <tr><td style="padding:22px 34px 6px">
+          <div style="font-size:18px;font-weight:800">2 · Primeros pasos</div>
+        </td></tr>
+        <tr><td style="padding:10px 34px 4px">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="34" valign="top"><div style="width:26px;height:26px;border-radius:13px;background:#3D8BFF;color:#fff;font-weight:900;font-size:13px;text-align:center;line-height:26px">1</div></td>
+              <td style="font-size:14px;color:#3A4256;padding-bottom:12px">Abre <b>Manual-Metodo-Reels-IA.pdf</b>: es la guía completa con diseño.</td>
+            </tr>
+            <tr>
+              <td width="34" valign="top"><div style="width:26px;height:26px;border-radius:13px;background:#3D8BFF;color:#fff;font-weight:900;font-size:13px;text-align:center;line-height:26px">2</div></td>
+              <td style="font-size:14px;color:#3A4256;padding-bottom:12px">Sigue el capítulo <b>"Configuración en Claude"</b>: en unos 60 minutos tendrás tu fábrica de Reels funcionando en la nube.</td>
+            </tr>
+            <tr>
+              <td width="34" valign="top"><div style="width:26px;height:26px;border-radius:13px;background:#3D8BFF;color:#fff;font-weight:900;font-size:13px;text-align:center;line-height:26px">3</div></td>
+              <td style="font-size:14px;color:#3A4256;padding-bottom:12px">Pídele a Claude tu primer video con la frase lista que viene en el paso 7 de la guía.</td>
+            </tr>
+          </table>
+        </td></tr>
+
+        <!-- Qué incluye -->
+        <tr><td style="padding:16px 34px 6px">
+          <div style="background:#F3F6FB;border-radius:14px;padding:18px 20px">
+            <div style="font:700 11px Menlo,Consolas,monospace;letter-spacing:2px;color:#906020">TU CARPETA INCLUYE</div>
+            <div style="font-size:14px;color:#3A4256;margin-top:10px;line-height:1.9">
+              ✓ Reglas de la IA (CLAUDE.md)<br>
+              ✓ Plantilla del proyecto con 4 videos de ejemplo<br>
+              ✓ Música y efectos de sonido originales<br>
+              ✓ Guía de configuración en Claude + referencia técnica<br>
+              ✓ Manual en PDF + 37 ideas de guiones
+            </div>
+          </div>
+        </td></tr>
+
+        <!-- Ayuda -->
+        <tr><td style="padding:22px 34px 30px">
+          <div style="font-size:14px;color:#3A4256">¿Dudas o el enlace no funciona? <b>Responde a este correo</b> y te ayudamos.</div>
+          <div style="font-size:14px;color:#3A4256;margin-top:14px">¡Nos vemos en tus Reels! 🎬<br><b>— @Curiosidades_MD</b></div>
+        </td></tr>
+
+        <!-- Pie -->
+        <tr><td style="background:#07090D;padding:18px 34px;font:600 11px Menlo,Consolas,monospace;color:#6A7286;letter-spacing:1px">
+          MÉTODO REELS CON IA · USO PERSONAL Y COMERCIAL DE TUS VIDEOS · PROHIBIDA LA REVENTA DE LA CARPETA
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</div>

@@ -1,0 +1,36 @@
+¡Hola, {{customer.first_name}}!
+
+Gracias por tu compra. Tu Método Reels con IA está listo 🎬
+
+━━━━━━━━━━━━━━━━━━━━
+1 · DESCARGA TU CARPETA
+━━━━━━━━━━━━━━━━━━━━
+{% for attachment in attachments %}
+{{ attachment.product_name }}
+{% if attachment.name %}
+📦 {{ attachment.name }}
+⬇ Descargar: {{ attachment.shop_url }}
+{% endif %}{% if attachment.link %}{% if attachment.instructions %}{{ attachment.instructions }}
+{% endif %}{% if attachment.cta_text %}{{ attachment.cta_text }}{% else %}Acceder{% endif %}: {{ attachment.url }}
+{% endif %}
+{% endfor %}
+Descárgalo desde una computadora y descomprímelo.
+
+━━━━━━━━━━━━━━━━━━━━
+2 · PRIMEROS PASOS
+━━━━━━━━━━━━━━━━━━━━
+① Abre Manual-Metodo-Reels-IA.pdf: es la guía completa.
+② Sigue el capítulo "Configuración en Claude": en unos 60 minutos tendrás tu fábrica de Reels funcionando en la nube.
+③ Pídele a Claude tu primer video con la frase lista del paso 7.
+
+TU CARPETA INCLUYE
+✓ Reglas de la IA (CLAUDE.md)
+✓ Plantilla del proyecto con 4 videos de ejemplo
+✓ Música y efectos de sonido originales
+✓ Guía de configuración en Claude + referencia técnica
+✓ Manual en PDF + 37 ideas de guiones
+
+¿Dudas o el enlace no funciona? Responde a este correo y te ayudamos.
+
+¡Nos vemos en tus Reels!
+— @Curiosidades_MD
