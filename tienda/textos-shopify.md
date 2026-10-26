@@ -2,7 +2,7 @@
 
 ## Producto
 - **Título:** Reels en Piloto Automático · Método completo
-- **Precio:** 29.00 USD   ·   *Precio de comparación (opcional, para que salga tachado):* 49.00
+- **Precio:** 19.00 USD   ·   *Precio de comparación (opcional, para que salga tachado):* 39.00
 - **Tipo:** Producto digital → desmarca "Es un producto físico" · Inventario: no hacer seguimiento.
 - **Handle / URL:** metodo-reels-ia  (NO lo cambies: la página de venta lo usa)
 - **Imágenes:** `producto/1-portada-producto.png`, `2-que-incluye.png`, `3-manual.png` (en ese orden).
@@ -26,7 +26,7 @@ Tú eliges el tema. La IA escribe el guion con datos verificados, pone una voz n
 - Manual en PDF de 24 páginas + 37 ideas de guiones
 - Ayuda por correo hasta tu primer Reel publicado
 
-Pago único · Descarga inmediata · Todo en español.
+Precio de lanzamiento: 19 USD (antes 39). Pago único · Descarga inmediata · Todo en español.
 Necesitas un plan de Claude con Claude Code y una cuenta de ElevenLabs (tienen su propio costo).
 
 ## SEO

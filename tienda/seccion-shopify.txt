@@ -15,10 +15,13 @@
 {%- if mdv_p and mdv_p.id -%}
   {%- capture mdv_link -%}/cart/{{ mdv_p.selected_or_first_available_variant.id }}:1{%- endcapture -%}
   {%- capture mdv_precio -%}{{ mdv_p.price | money_without_trailing_zeros }}{%- endcapture -%}
-  {%- if mdv_p.compare_at_price > mdv_p.price -%}{%- capture mdv_antes -%}{{ mdv_p.compare_at_price | money_without_trailing_zeros }}{%- endcapture -%}{%- endif -%}
+  {%- if mdv_p.compare_at_price > mdv_p.price -%}
+    {%- capture mdv_antes -%}{{ mdv_p.compare_at_price | money_without_trailing_zeros }}{%- endcapture -%}
+    {%- assign mdv_desc = mdv_p.compare_at_price | minus: mdv_p.price | times: 100 | divided_by: mdv_p.compare_at_price -%}
+  {%- endif -%}
 {%- else -%}
   {%- capture mdv_link -%}/products/{{ mdv_handle }}{%- endcapture -%}
-  {%- assign mdv_precio = '$29 USD' -%}
+  {%- assign mdv_precio = '$19 USD' -%}
 {%- endif -%}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,6 +116,7 @@
   .mdv .lista{list-style:none;margin:22px 0 26px}
   .mdv .lista li{padding:10px 0 10px 32px;position:relative;border-bottom:1px solid var(--line)}
   .mdv .lista li:before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:900}
+  .mdv .desc{display:inline-block;background:var(--rojo);color:#fff;font:800 12px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;padding:6px 10px;border-radius:8px;text-transform:uppercase;vertical-align:middle}
   .mdv .lista li.bono{color:var(--oro);font-weight:700}
   /* FAQ */
   .mdv details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-top:12px}
@@ -152,7 +156,7 @@
       <p class="sub">Tú eliges el tema. La IA escribe el guion, pone la voz, anima el video y lo publica en tu Instagram a la hora que quieras. Es el sistema exacto con el que hago los videos de @Curiosidades_MD.</p>
       <div class="ctas">
         <a class="btn" href="{{ mdv_link }}" id="mdv-cta">Quiero mis Reels en automático</a>
-        <span class="nota">{% if mdv_antes %}<span class="precio-tachado">{{ mdv_antes }}</span>{% endif %}<b style="color:var(--txt);font-size:15px">{{ mdv_precio }}</b> · pago único · descarga inmediata</span>
+        <span class="nota">{% if mdv_antes %}<span class="precio-tachado">{{ mdv_antes }}</span>{% endif %}<b style="color:var(--txt);font-size:15px">{{ mdv_precio }}</b> · pago único · descarga inmediata{% if mdv_desc %} <span class="desc">−{{ mdv_desc }}% lanzamiento</span>{% endif %}</span>
       </div>
       <div class="cifras">
         <div><b>+20,000</b><span>vistas con 9 Reels en 4 días</span></div>
@@ -273,6 +277,7 @@
     </div>
     <div class="caja">
       <div class="nota">REELS EN PILOTO AUTOMÁTICO · INCLUYE EL MÉTODO</div>
+      {% if mdv_desc %}<div style="margin-top:12px"><span class="desc">−{{ mdv_desc }}% · precio de lanzamiento</span></div>{% endif %}
       <div style="display:flex;align-items:baseline;gap:12px;margin-top:12px;flex-wrap:wrap">
         {% if mdv_antes %}<span class="precio-tachado" style="font-size:24px">{{ mdv_antes }}</span>{% endif %}
         <span class="cifra">{{ mdv_precio }}</span><span class="sub">pago único</span>
@@ -316,7 +321,7 @@
 
 <!-- Barra de compra fija en el celular (aparece al pasar la portada) -->
 <div class="mdv-barra" id="mdv-barra">
-  <div><b>{{ mdv_precio }}</b><span>Reels en piloto automático</span></div>
+  <div><b>{{ mdv_precio }}</b>{% if mdv_antes %} <s style="color:#9AA3B5;font-size:13px">{{ mdv_antes }}</s>{% endif %}<span>Reels en piloto automático</span></div>
   <a href="{{ mdv_link }}">Lo quiero</a>
 </div>
 <script>
