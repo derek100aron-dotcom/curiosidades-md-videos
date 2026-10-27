@@ -5,10 +5,10 @@
 - Precio: 19.00 USD   ·   *Precio de comparación (opcional, para que salga tachado):* 39.00
 - Tipo: Producto digital → desmarca "Es un producto físico" · Inventario: no hacer seguimiento.
 - Handle / URL: metodo-reels-ia  (NO lo cambies: la página de venta lo usa)
-- Imágenes: `producto/1-portada-producto.png`, `2-que-incluye.png`, `3-manual.png` (en ese orden).
+- Multimedia (en este orden): producto/1-portada-producto.png, 2-te-pasa-esto.png, 3-antes-y-ahora.png, 4-que-incluye.png, 5-manual-pdf.png, 6-video-demo.mp4
 - Archivo a entregar (app Digital Downloads): `Metodo-Reels-IA.zip`
 
-### Descripción
+### Descripción  (pega en Shopify SOLO el texto de descripcion-producto.txt)
 Publica un Reel al día sin grabarte, sin editar y sin salir en cámara.
 
 Tú eliges el tema. La IA escribe el guion con datos verificados, pone una voz natural, anima el video y lo publica en tu Instagram a la hora que quieras. Es el sistema exacto con el que hago los videos de @Curiosidades_MD.

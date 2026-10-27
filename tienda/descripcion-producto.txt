@@ -1,0 +1,19 @@
+Publica un Reel al día sin grabarte, sin editar y sin salir en cámara.
+
+Tú eliges el tema. La IA escribe el guion con datos verificados, pone una voz natural, anima el video y lo publica en tu Instagram a la hora que quieras. Es el sistema exacto con el que hago los videos de @Curiosidades_MD.
+
+Resuelve:
+- "No sé de qué publicar" → 37 ideas con gancho y la fórmula para sacar más.
+- "Editar me toma horas" → la IA anima, subtitula y pone música y efectos.
+- "No quiero salir en cámara" → videos animados con voz de IA.
+- "No soy constante" → se publica solo todos los días.
+
+Incluye el método completo:
+- Reglas de la IA (gancho, guion, ritmo, subtítulos, sonido y finales)
+- Plantilla con 4 videos de ejemplo, música y efectos originales
+- Guía para configurarlo en Claude (60 minutos) y automatizar Instagram
+- Manual en PDF de 24 páginas + 37 ideas de guiones
+- Ayuda por correo hasta tu primer Reel publicado
+
+Precio de lanzamiento: 19 USD (antes 39). Pago único · Descarga inmediata · Todo en español.
+Necesitas un plan de Claude con Claude Code y una cuenta de ElevenLabs (tienen su propio costo).
